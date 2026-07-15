@@ -24,24 +24,19 @@ section {
     border-radius: 50%;
 }
 
-/* slides */
 .carousel-item {
-    height: 500px;
-}
-
-.d-block {
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    position: relative;
 }
 
 .carousel-item::before {
     content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(transparent, rgb(36, 13, 6, 0.5));
-    position: absolute;
+    background: linear-gradient(to bottom, transparent, rgba(36, 13, 6, 0.5));
+    z-index: 1;
 }
 
 /* container */
@@ -55,9 +50,7 @@ section {
 
 /* apresentação dos cards */
 .card {
-    display: flex;
     text-align: center;
-    align-items: center;
 }
 
 .handmade {
@@ -72,24 +65,15 @@ section {
 
 /* cards dos produtos */
 .card-menu-item img {
-    margin-top: 10px;
-    height: 220px;
-    border-radius: 40px;
-    object-fit: cover;
-    object-position: center;
-    width: 64%;
+    border-radius: 12px;
     cursor: pointer;
 }
 
 .card-menu-item:hover {
-    transform: scale(1.1);
-    border-radius: 40px;
+    transform: scale(1.02);
     overflow: hidden;
     box-shadow: 0 5px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-    display: flex;
-    justify-content: space-between;
-
+    transition: transform 0.25s ease;
 }
 
 .card-body {
@@ -103,7 +87,31 @@ section {
 
 .expand {
     width: 100%;
-    height: 70%;
+}
+
+/* Ajuste visual: limitar a área visual das imagens dos produtos para evitar sensação de zoom
+   Mantém proporção quadrada (ratio-1x1) mas reduz a área visual em telas maiores */
+.card-menu-item .ratio {
+    max-width: 420px;
+    margin: 0.25rem auto 0;
+}
+
+@media (max-width: 991.98px) {
+    .card-menu-item .ratio {
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .card-menu-item .ratio {
+        max-width: 100%;
+    }
+}
+
+/* deixar cantos levemente arredondados e prevenir overflow */
+.card-menu-item .ratio img {
+    border-radius: 12px;
+    display: block;
 }
 
 
